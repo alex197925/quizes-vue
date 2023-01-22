@@ -1,7 +1,18 @@
 <!-- @format -->
 
+<script setup>
+// Importing quizes.json from data/quizes.json
+import q from "./data/quizes.json";
+
+// Importing ref for to create state
+import { ref } from "vue";
+
+const quizes = ref(q); // all data is here
+</script>
+
 <template>
   <div class="container">
+    {{ q }}
     <header>
       <h1>Quizes</h1>
       <input type="text" placeholder="Search..." />
@@ -9,15 +20,12 @@
 
     <!-- Cards -->
     <div class="options-container">
-      <div class="card">
-        <img
-          src="https://cdn5-ss3.sharpschool.com/UserFiles/Servers/Server_770743/Image/Technology/Other%20Pictures/math.jpg"
-          alt="Math"
-        />
+      <div v-for="quiz in quizes" :key="quiz.id" class="card">
+        <img :src="quiz.img" alt="" />
 
         <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{ quiz.questions.length }} questions</p>
         </div>
       </div>
     </div>
