@@ -4,18 +4,28 @@
 // Importing quizes.json from data/quizes.json
 import q from "./data/quizes.json";
 
-// Importing ref for to create state
-import { ref } from "vue";
+// Importing ref for to bind the  state
+import { ref, watch } from "vue";
 
 const quizes = ref(q); // all data is here
+const search = ref(""); // input
+
+// Every time listening on change in input field
+watch(search, () => {
+  quizes.value = q.filter((quiz) =>
+    quiz.name.toLowerCase().includes(search.value.toLowerCase())
+  );
+  // console.log("Helllo from Watch");
+});
 </script>
 
 <template>
   <div class="container">
-    {{ q }}
     <header>
       <h1>Quizes</h1>
-      <input type="text" placeholder="Search..." />
+
+      <!-- "Trim" all whitespace -->
+      <input v-model.trim="search" type="text" placeholder="Search..." />
     </header>
 
     <!-- Cards -->
