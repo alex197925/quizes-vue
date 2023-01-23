@@ -1,14 +1,19 @@
 <!-- @format -->
+<script setup>
+// To use props have to import defineProps
+import { defineProps } from "vue";
+
+// define, which props to pass
+const { quiz } = defineProps(["quiz"]);
+console.log(quiz);
+</script>
 
 <template>
   <div class="card">
-    <img
-      src="https://img.freepik.com/premium-vector/realistic-math-chalkboard-background_23-2148154055.jpg?w=2000"
-      alt=""
-    />
+    <img :src="quiz.img" alt="" />
     <div class="card-text">
-      <h2>Math</h2>
-      <p>3 questions</p>
+      <h2>{{ quiz.name }}</h2>
+      <p>{{ quiz.questions.length }} questions</p>
     </div>
   </div>
 </template>

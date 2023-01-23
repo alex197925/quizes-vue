@@ -31,15 +31,7 @@ watch(search, () => {
 
     <!-- Cards -->
     <div class="options-container">
-      <Card />
-      <!-- <div v-for="quiz in quizes" :key="quiz.id" class="card">
-        <img :src="quiz.img" alt="" />
-
-        <div class="card-text">
-          <h2>{{ quiz.name }}</h2>
-          <p>{{ quiz.questions.length }} questions</p>
-        </div>
-      </div> -->
+      <Card v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
     </div>
   </div>
 </template>
@@ -75,6 +67,4 @@ header input {
   flex-wrap: wrap;
   margin-top: 40px;
 }
-
-/* Card */
 </style>
